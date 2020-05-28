@@ -1,0 +1,11 @@
+FROM node:14.3-slim AS build-env
+WORKDIR /app
+
+COPY angularapp/package.json .
+COPY angularapp/angular.json .
+COPY angularapp/tsconfig.json .
+RUN npm install -g @angular/cli && npm install
+
+COPY angularapp/src ./src
+COPY angularapp/tsconfig.app.json .
+ENTRYPOINT [ "ng", "server" ]
