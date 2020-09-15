@@ -1,4 +1,5 @@
 <p class="text-xs-center">Войдите для работы</p>
+<div *ngIf="message.text" class="alert alert-{{message.type}}">{{message.text}}</div>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="form-group"
     [ngClass]="{'has-error': form.get('email').invalid && form.get('email').touched}">
@@ -19,7 +20,7 @@
     *ngIf="form.get('password').invalid && form.get('password').touched"
   >
     <span *ngIf="form.get('password')['errors']['required']">Пароль не может быть пустым</span>
-    <span *ngIf="form.get('password')['errors']['minlength']">
+    <span *ngIf="form.get('password')['errors']['minlength'] && form.get('password')['errors']['minlength'].requiredLength">
       Пароль должен быть больше {{ form.get('password')['errors']['minlength'].requiredLength }} символов. Сейчас {{ form.get('password')['errors']['minlength'].actualLength }}.
     </span>
   </span>
@@ -30,7 +31,7 @@
   </div>
   <div class="form-group">
     <p class="text-muted text-xs-center">
-      Нет аккаунта? <a href="#">Зарегистрироваться!</a>
+      Нет аккаунта? <a [routerLink]="'/registration'">Зарегистрироваться!</a>
     </p>
   </div>
 </form>
