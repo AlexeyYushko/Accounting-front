@@ -13,11 +13,11 @@ export class UsersService {
   private headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
 
   getUserByEmail(email: string): Observable<User> {
-     return this.http.get<User>(`${this.localUrl}/api/users/getbyemail?email=${email}`);
+     return this.http.get<User>(`${this.prodUrl}/api/users/getbyemail?email=${email}`);
   }
 
   createNewUser(user: User): Observable<User> {
-    return this.http.post<User>(`${this.localUrl}/api/users/createnewuser`, user, {headers: this.headers})
+    return this.http.post<User>(`${this.prodUrl}/api/users/createnewuser`, user, {headers: this.headers})
     .pipe(map(response => response));
   }
 }
