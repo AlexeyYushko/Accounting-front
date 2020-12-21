@@ -9,4 +9,4 @@ RUN npm install -g @angular/cli && npm install
 
 
 RUN ls -al
-ENTRYPOINT [ "ng", "serve", "--host", "0.0.0.0"]
+ENTRYPOINT [ "ng", "serve", "--host", "0.0.0.0", "--poll", "1000"]
