@@ -1,7 +1,7 @@
 export class Currency {
     constructor (
-        public id: string,
-        public name: string
+        public currency: string,
+        public rate: number
     ) {
 
     }

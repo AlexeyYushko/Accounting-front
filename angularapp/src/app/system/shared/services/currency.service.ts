@@ -2,15 +2,15 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { BaseHttpClient } from "src/app/shared/core/base-httpclient";
-import { Bill } from "../models/bill.model";
+import { Currency } from "../models/currency.model";
 
 @Injectable() 
-export class BillService extends BaseHttpClient {
+export class CurrencyService extends BaseHttpClient {
     constructor (public http: HttpClient) {
         super(http);
     }
 
-    getBill(userId: string): Observable<Bill> {
-        return this.http.get<Bill>(`/api/bill/getbyuserid?userId=${userId}`);
+    getCurrency(currencyId: string) {
+        return this.http.get<Array<Currency>>(`/api/currency/getexchangerates?baseCurrencyId=${currencyId}`);
     }
 }
