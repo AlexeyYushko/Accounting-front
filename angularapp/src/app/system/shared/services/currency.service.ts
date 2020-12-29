@@ -10,7 +10,7 @@ export class CurrencyService extends BaseHttpClient {
         super(http);
     }
 
-    getCurrency(currencyId: string) {
-        return this.http.get<Array<Currency>>(`/api/currency/getexchangerates?baseCurrencyId=${currencyId}`);
+    getCurrency(currencyName: string) {
+        return this.get<Array<Currency>>(`/api/currency/getexchangerates?baseCurrencyName=${currencyName}`);
     }
 }

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Bill } from '../../shared/models/bill.model';
+import { Currency } from '../../shared/models/currency.model';
 
 @Component({
   selector: 'wfm-bill-card',
@@ -6,6 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bill-card.component.scss']
 })
 export class BillCardComponent implements OnInit {
+
+
+  @Input() bill: Bill;
+  @Input() currency: Array<Currency>;
 
   constructor() { }
 

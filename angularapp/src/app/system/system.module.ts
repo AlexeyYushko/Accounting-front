@@ -13,6 +13,7 @@ import { DropdownDirective } from './shared/directives/dropdown.directive';
 import { BillCardComponent } from './bill-page/bill-card/bill-card.component';
 import { CurrencyCardComponent } from './bill-page/currency-card/currency-card.component';
 import { BillService } from './shared/services/bill.service';
+import { CurrencyService } from './shared/services/currency.service';
 
 @NgModule({
   imports:[
@@ -33,7 +34,8 @@ import { BillService } from './shared/services/bill.service';
     CurrencyCardComponent
   ],
   providers: [
-    BillService
+    BillService,
+    CurrencyService
   ]
 })
 export class SystemModule {

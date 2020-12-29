@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/shared/models/user.model';
 import { Bill } from '../shared/models/bill.model';
+import { Currency } from '../shared/models/currency.model';
 import { BillService } from '../shared/services/bill.service';
+import { CurrencyService } from '../shared/services/currency.service';
 
 @Component({
   selector: 'wfm-bill-page',
@@ -11,8 +13,12 @@ import { BillService } from '../shared/services/bill.service';
 export class BillPageComponent implements OnInit {
   user: User;
   bill: Bill;
+  currency: Array<Currency>;
 
-  constructor(private billService: BillService) { }
+  constructor(
+    private billService: BillService, 
+    private currencyService: CurrencyService) 
+    { }
 
   ngOnInit(): void {
     this.user = JSON.parse(window.localStorage.getItem('user'));
@@ -21,5 +27,12 @@ export class BillPageComponent implements OnInit {
     .subscribe((bill: Bill) => {
       this.bill = bill;
     });
+  }
+
+  onRefresh() {
+    this.currencyService.getCurrency(this.bill.currency)
+    .subscribe((currency) => {
+      this.currency = currency;
+    })
   }
 }
