@@ -14,10 +14,11 @@ export class BillPageComponent implements OnInit {
   user: User;
   bill: Bill;
   currency: Array<Currency>;
+  isLoaded = false;
 
   constructor(
-    private billService: BillService, 
-    private currencyService: CurrencyService) 
+    private billService: BillService,
+    private currencyService: CurrencyService)
     { }
 
   ngOnInit(): void {
@@ -26,13 +27,17 @@ export class BillPageComponent implements OnInit {
     this.billService.getBill(this.user.id)
     .subscribe((bill: Bill) => {
       this.bill = bill;
+      this.isLoaded = true;
     });
   }
 
   onRefresh() {
+    this.isLoaded = false;
+
     this.currencyService.getCurrency(this.bill.currency)
     .subscribe((currency) => {
       this.currency = currency;
+      this.isLoaded = true;
     })
   }
 }
