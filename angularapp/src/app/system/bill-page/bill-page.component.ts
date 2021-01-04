@@ -27,7 +27,7 @@ export class BillPageComponent implements OnInit {
     this.billService.getBill(this.user.id)
     .subscribe((bill: Bill) => {
       this.bill = bill;
-      this.isLoaded = true;
+      this.onRefresh();
     });
   }
 
