@@ -17,12 +17,12 @@
                     <tr>
                         <td>RUB</td>
                         <td>1</td>
-                        <td>{{ currentDate | date }}</td>
+                        <td>{{ currentDate | wfmMoment: 'YYYY-MM-DD' }}</td>
                     </tr>
                     <tr *ngFor="let c of currency">
                         <td>{{ c.currency }}</td>
                         <td>{{ c.rate }}</td>
-                        <td>{{ currentDate | date }}</td>
+                        <td>{{ currentDate | wfmMoment: 'YYYY-MM-DD' }}</td>
                     </tr>
                     </tbody>
                 </table>
