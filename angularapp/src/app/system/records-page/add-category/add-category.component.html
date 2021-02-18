@@ -35,12 +35,12 @@
                 name="capacity"
                 #capacity="ngModel"
                 required
-                [min]="1"
+                min="1"
                 >
                 <span 
                 *ngIf="capacity.invalid && capacity.touched" 
                 class="form-help-text"
-                >Валидация нет ошибки</span>
+                >Поле не может быть пустым</span>
             </div>
             <button type="submit" class="btn btn-primary">Добавить</button>
         </form>
