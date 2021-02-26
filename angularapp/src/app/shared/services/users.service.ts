@@ -12,10 +12,10 @@ export class UsersService extends BaseHttpClient {
   }
 
   getUserByEmail(email: string): Observable<User> {
-     return this.get<User>(`/api/users/getbyemail?email=${email}`);
+     return this.get<User>(`/api/users?email=${email}`);
   }
 
-  createNewUser(user: User): Observable<User> {
-    return this.post<User>(`/api/users/createnewuser`, user);
+  add(user: User): Observable<User> {
+    return this.post<User>(`/api/users/add`, user);
   }
 }
