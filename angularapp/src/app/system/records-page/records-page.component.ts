@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../shared/models/category.model';
+import { CategoryService } from '../shared/services/category.service';
 
 @Component({
   selector: 'wfm-records-page',
@@ -8,7 +9,7 @@ import { Category } from '../shared/models/category.model';
 })
 export class RecordsPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private categoryService: CategoryService) { }
 
   ngOnInit(): void {
   }
