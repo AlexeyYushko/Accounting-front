@@ -10,17 +10,17 @@
                 [ngClass]="{'has-error': name.invalid && name.touched}"
                 >
                 <label class="control-label" for="category-name">Введите название</label>
-                <input 
-                type="text" 
-                id="category-name" 
-                class="form-control" 
-                required 
+                <input
+                type="text"
+                id="category-name"
+                class="form-control"
+                required
                 #name="ngModel"
                 name="name"
                 ngModel
                 >
                 <span
-                *ngIf="name.invalid && name.touched" 
+                *ngIf="name.invalid && name.touched"
                 class="form-help-text"
                 >Название категории не может быть пустым.</span>
             </div>
@@ -37,12 +37,16 @@
                 required
                 min="1"
                 >
-                <span 
-                *ngIf="capacity.invalid && capacity.touched" 
+                <span
+                *ngIf="capacity.invalid && capacity.touched"
                 class="form-help-text"
                 >Поле не может быть пустым</span>
             </div>
-            <button type="submit" class="btn btn-primary">Добавить</button>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="f.invalid"
+              >Добавить</button>
         </form>
     </div>
 </div>

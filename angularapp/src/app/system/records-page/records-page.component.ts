@@ -8,13 +8,27 @@ import { CategoryService } from '../shared/services/category.service';
   styleUrls: ['./records-page.component.scss']
 })
 export class RecordsPageComponent implements OnInit {
+  categories: Category[] = [];
+  isLoaded = false;
 
   constructor(private categoryService: CategoryService) { }
 
   ngOnInit(): void {
+    this.categoryService.getAll()
+    .subscribe((categories: Category[]) => {
+      this.categories = categories;
+      this.isLoaded = true;
+    });
   }
 
   newCategoryAdded(category: Category) {
-    // add to array
+    this.categories.push(category);
+  }
+
+  categoryWasEdited(category: Category) {
+    const idx = this.categories
+      .findIndex(c => c.id == category.id);
+
+    this.categories[idx] = category;
   }
 }
