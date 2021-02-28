@@ -17,4 +17,8 @@ export class CategoryService extends BaseHttpClient {
     getAll(): Observable<Category[]> {
         return this.get<Category[]>(`/api/category`);
     }
+
+    edit(category: Category): Observable<Category> {
+        return this.put(`/api/category/${category.id}`, category);
+    }
 }
