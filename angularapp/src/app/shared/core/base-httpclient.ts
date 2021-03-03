@@ -7,11 +7,11 @@ export class BaseHttpClient {
     private prodUrl = 'http://localhost:5000'
     private localUrl = 'http://localhost:57266'
     private headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
-    
+
     constructor(public http: HttpClient) {}
 
     private getUrl(url: string = ''): string {
-        return this.prodUrl + url;
+        return this.localUrl + url;
     }
 
     public get<T>(url: string): Observable<T> {

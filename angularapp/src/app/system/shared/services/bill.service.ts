@@ -13,4 +13,8 @@ export class BillService extends BaseHttpClient {
     getBill(userId: string): Observable<Bill> {
         return this.get<Bill>(`/api/bill/getbyuserid?userId=${userId}`);
     }
+
+    edit(bill: Bill): Observable<Bill> {
+        return this.put(`/api/bill/${bill.id}`, bill);
+    }
 }
