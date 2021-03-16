@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'wfm-login',
@@ -22,8 +23,16 @@ export class LoginComponent implements OnInit {
     private usersService: UsersService,
     private authService: AuthService,
     private router: Router,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+    private title: Title,
+    private meta: Meta
+  ) {
+    title.setTitle('Вход в систему');
+    meta.addTags([
+      {name: 'keywords', content: 'логин,вход,система'},
+      {name: 'description', content: 'Страница для входа в систему'}
+    ]);
+  }
 
   ngOnInit(): void {
     this.message = new Message('danger', '');
@@ -43,6 +52,9 @@ export class LoginComponent implements OnInit {
       if (results.query['nowCanLogin']) {
             this.showMessage('success', 'Теперь вы можете зайти в систему');
           }
+        else if (results.query['accessDenied']) {
+          this.showMessage('warning', 'Для работы с системой вам необходимо войти');
+        }
     });
   }
 

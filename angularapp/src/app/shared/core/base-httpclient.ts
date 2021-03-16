@@ -11,7 +11,7 @@ export class BaseHttpClient {
     constructor(public http: HttpClient) {}
 
     private getUrl(url: string = ''): string {
-        return this.localUrl + url;
+        return this.prodUrl + url;
     }
 
     public get<T>(url: string): Observable<T> {
