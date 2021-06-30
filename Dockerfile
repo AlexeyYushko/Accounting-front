@@ -1,18 +1,16 @@
-FROM node:14.3-slim AS build-env
+FROM node:latest AS builder
 WORKDIR /app
 
-COPY angularapp/package.json .
-COPY angularapp/angular.json .
-COPY angularapp/tsconfig.json .
-RUN npm install -g @angular/cli && npm install
+COPY ./angularapp .
 
-COPY angularapp/src ./src
-COPY angularapp/tsconfig.app.json .
-WORKDIR /app
-RUN ng build --prod
+RUN npm i && npm run build
 
-FROM nginx:1.17
+FROM nginx:alpine
 
-COPY nginx.conf /etc/nginx/nginx.conf
 WORKDIR /usr/share/nginx/html
-COPY --from=build-env /app/dist/angularapp .
+
+RUN rm -rf ./*
+
+COPY --from=builder /app/dist/angularapp .
+
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
